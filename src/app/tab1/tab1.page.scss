@@ -1,0 +1,38 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1em;
+  border-radius: 50%;
+}
+
+section {
+  background-color: #232323;
+  margin:0;
+}
+
+h1 {
+  font-family: "Roboto","Forte","Arial";
+  font-weight: bold;
+  background-color: #00f;
+  color:#fff;
+  text-shadow: 2px 2px 3px #000;
+  text-align:center;
+  margin: 0;
+}
+
+h6 {
+  font-family: "Forte","Roboto","Arial";
+  background-color: #232323;
+  color:#fff;
+  text-align:center;
+  margin: 0;
+  padding-top: 1em;
+  padding-bottom:1em;
+}
+
+a {
+  width:100%;
+  text-decoration: none;
+  margin:0;
+}
