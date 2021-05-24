@@ -1,38 +1,27 @@
-img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 1em;
-  border-radius: 50%;
+ion-item{
+
+  --padding-start: 10px;
+  --inner-padding-end: 10px;
+
+  ion-thumbnail{
+    height: 100%;
+    margin-inline-end: 10px;
+  }
 }
 
-section {
-  background-color: #232323;
-  margin:0;
-}
-
-h1 {
-  font-family: "Roboto","Forte","Arial";
+h1{
   font-weight: bold;
-  background-color: #00f;
-  color:#fff;
-  text-shadow: 2px 2px 3px #000;
-  text-align:center;
-  margin: 0;
+  font-size: 0.8rem;
 }
 
-h6 {
-  font-family: "Forte","Roboto","Arial";
-  background-color: #232323;
-  color:#fff;
-  text-align:center;
-  margin: 0;
-  padding-top: 1em;
-  padding-bottom:1em;
+p{
+  font-size: 0.6rem;
 }
 
-a {
-  width:100%;
-  text-decoration: none;
-  margin:0;
+p + p{
+  color:#8a8a8a;
+}
+
+ion-chip{
+  padding-inline: 3px;
 }
