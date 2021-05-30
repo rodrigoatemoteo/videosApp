@@ -23,13 +23,13 @@ export class Tab1Page {
           text: 'Cancelar',
           role: 'Cancel',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            this.apresentarToastNaoFavoritou();
           }
         },
         {
           text: 'Sim, favoritar!',
           handler: () => {
-            this.apresentarToast();
+            this.apresentarToastFavoritou();
           }
         }
 
@@ -40,13 +40,26 @@ export class Tab1Page {
     await alert.present();
   }
 
-  async apresentarToast(){
+  async apresentarToastFavoritou(){
 
     const toast = await this.toastController.create({
 
       message: 'Filme adicionado com sucesso',
       duration: 3000,
       color:'success'
+
+    });
+    toast.present();
+
+  }
+
+  async apresentarToastNaoFavoritou(){
+
+    const toast = await this.toastController.create({
+
+      message: 'Ação Cancelada!',
+      duration: 3000,
+      color:'danger'
 
     });
     toast.present();
