@@ -1,7 +1,9 @@
+import { DadosService } from './../services/dados.service';
 import { IFilme } from '../models/IFilme.model';
 import { Component } from '@angular/core';
 import { AlertController, SelectValueAccessor } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -18,7 +20,8 @@ export class Tab1Page {
       duracao:'1h e 50min',
       classificacao:76,
       cartaz:'https://cdn.ome.lt/oomMbGcTeNhqIHIKwmUGY2Q9NAU=/fit-in/837x500/smart/uploads/conteudo/fotos/SnakeEyes_WcfFcY6.jpg',
-      generos:['Ação', 'Aventura', 'Fantasia']
+      generos:['Ação', 'Aventura', 'Fantasia'],
+      pagina:'/snake-eyes'
     },
     {
       nome:'Mortal Kombat',
@@ -26,7 +29,8 @@ export class Tab1Page {
       duracao:'1h e 40min',
       classificacao:50,
       cartaz:'https://pbs.twimg.com/media/EuhZHMKWQAE84f7?format=jpg&name=large',
-      generos:['Ação','Fantasia']
+      generos:['Ação','Fantasia'],
+      pagina:'/mortal-kombat'
     },
     {
       nome:'Viúva Negra',
@@ -34,11 +38,22 @@ export class Tab1Page {
       duracao:'1h e 50min',
       classificacao:30,
       cartaz:'https://br.web.img2.acsta.net/pictures/20/03/09/15/51/4538015.jpg',
-      generos:['Ação','Aventura']
+      generos:['Ação','Aventura'],
+      pagina:'/viuva-negra'
     }
   ];
 
-  constructor(public alertController: AlertController, public toastController: ToastController) {}
+  constructor(public alertController: AlertController,
+              public toastController: ToastController,
+              public dadosService: DadosService,
+              public route: Router) {}
+
+  exibirFilme(filme: IFilme){
+
+    this.dadosService.guardarDados('filme',filme);
+    this.route.navigateByUrl('/dados-filme');
+
+  }
 
   async exibirAlertaFavorito(){
 
