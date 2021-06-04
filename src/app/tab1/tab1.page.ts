@@ -1,6 +1,9 @@
+import { GeneroService } from './../services/genero.service';
+import { IListaFilmes, IFilmeApi } from './../models/IFilmeAPI.model';
+import { FilmeService } from './../services/filme.service';
 import { DadosService } from './../services/dados.service';
 import { IFilme } from '../models/IFilme.model';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController, SelectValueAccessor } from '@ionic/angular';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -10,9 +13,9 @@ import { Router } from '@angular/router';
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page {
+export class Tab1Page implements OnInit{
 
-  titulo = 'Vídeos';
+  titulo = 'Filmes';
   listaVideos: IFilme[] = [
     {
       nome:'Snake Eyes: G.I. Joe Origins',
@@ -40,15 +43,56 @@ export class Tab1Page {
       cartaz:'https://br.web.img2.acsta.net/pictures/20/03/09/15/51/4538015.jpg',
       generos:['Ação','Aventura'],
       pagina:'/viuva-negra'
+    },
+    {
+      nome:'Godzilla vs Kong',
+      lancamento:'Estreia: 31 de Março de 2021',
+      duracao:'1h e 53min',
+      classificacao:45,
+      cartaz:'https://upload.wikimedia.org/wikipedia/pt/e/ea/Godzilla_vs._Kong.jpg',
+      generos:['Ficção Científica]','Ação'],
+      pagina:''
+    },
+    {
+      nome:'Venom 2: Tempo de carnificina',
+      lancamento:'Estreia: 24 de Setembro de 2021',
+      duracao:'1h e 45min',
+      classificacao:45,
+      cartaz:'https://disneyplusbrasil.com.br/wp-content/uploads/2021/03/Venom-2-Poster-Nao-Oficial-843x1024.jpg',
+      generos:['Aventura','Quadrinhos'],
+      pagina:''
     }
   ];
+
+  listaFilmes: IListaFilmes;
+
+  generos: string[] = [];
 
   constructor(public alertController: AlertController,
               public toastController: ToastController,
               public dadosService: DadosService,
+              public filmeService: FilmeService,
+              public generoService: GeneroService,
               public route: Router) {}
 
-  exibirFilme(filme: IFilme){
+  buscarFilmes(evento: any) {
+
+    console.log(evento.target.value);
+    const busca = evento.target.value;
+    if(busca && busca.trim() !== ''){
+
+      this.filmeService.buscarFilmes(busca).subscribe(dados => {
+
+        console.log(dados);
+        this.listaFilmes = dados;
+
+      });
+
+    }
+
+  }
+
+  exibirFilme(filme: IFilmeApi){
 
     this.dadosService.guardarDados('filme',filme);
     this.route.navigateByUrl('/dados-filme');
@@ -107,6 +151,23 @@ export class Tab1Page {
 
     });
     toast.present();
+
+  }
+
+  ngOnInit(){
+
+    this.generoService.buscarGeneros().subscribe(dados => {
+
+      console.log('Generos: ', dados.genres);
+      dados.genres.forEach(genero => {
+
+        this.generos[genero.id] = genero.name;
+
+      });
+
+      this.dadosService.guardarDados('generos', this.generos);
+
+    });
 
   }
 

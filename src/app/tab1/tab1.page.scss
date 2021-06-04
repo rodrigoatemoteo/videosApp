@@ -6,6 +6,13 @@ ion-item{
   ion-thumbnail{
     height: 100%;
     margin-inline-end: 10px;
+
+    ion-icon{
+
+      font-size: 48px;
+      color:#dcdcdc;
+
+    }
   }
 }
 
@@ -23,7 +30,13 @@ p + p{
 }
 
 ion-chip{
-  padding-inline: 2px;
+  padding-inline: 0;
+  height: 48px;
+  width: 60px;
+  font-size: 0.9rem;
+  border-radius: 50%;
+  justify-content: center;
+  border-width: 2px;
 }
 
 ion-badge{
