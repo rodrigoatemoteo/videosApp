@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { SnakeEyesPageRoutingModule } from './snake-eyes-routing.module';
+import { LoginPageRoutingModule } from './login-routing.module';
 
-import { SnakeEyesPage } from './snake-eyes.page';
+import { LoginPage } from './login.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SnakeEyesPageRoutingModule
+    LoginPageRoutingModule
   ],
-  declarations: [SnakeEyesPage]
+  declarations: [LoginPage]
 })
-export class SnakeEyesPageModule {}
+export class LoginPageModule {}
