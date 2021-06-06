@@ -1,40 +1,28 @@
-import { IListaGenero } from './../models/IGenero.model';
-import { map, catchError } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { IListaSeries} from './../models/ISeriesAPI.model';
 import { ToastController } from '@ionic/angular';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GeneroService {
+export class SerieService {
 
   lingua = 'pt-BR';
+  regiao = 'BR';
 
   private apiURL = 'https://api.themoviedb.org/3/';
   private key = '?api_key=4f4269461bb15b2305981f5d467c93e2';
 
   constructor(private http: HttpClient, public toastController: ToastController) { }
 
-  buscarGeneros(): Observable<IListaGenero>{
+  buscarSeries(busca: string): Observable<IListaSeries> {
 
-    const url = `${this.apiURL}genre/movie/list${this.key}&language=${this.lingua}`;
+    const url = `${this.apiURL}search/tv${this.key}&language=${this.lingua}&region=${this.regiao}&query=${busca}`;
 
-    return this.http.get<IListaGenero>(url).pipe(
-
-      map(retorno=>retorno),
-      catchError(erro => this.exibirErro(erro))
-
-    );
-
-  }
-
-  buscarGenerosSeries(): Observable<IListaGenero>{
-
-    const url = `${this.apiURL}genre/tv/list${this.key}&language=${this.lingua}`;
-
-    return this.http.get<IListaGenero>(url).pipe(
+    return this.http.get<IListaSeries>(url).pipe(
 
       map(retorno=>retorno),
       catchError(erro => this.exibirErro(erro))
